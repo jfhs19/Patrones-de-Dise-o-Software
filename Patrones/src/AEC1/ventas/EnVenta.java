@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package decorator;
+package AEC1.ventas;
 
 /**
  *
  * @author jfhs1
  */
-public interface  EnVenta {
-	public String getDescripcion();
-        public int getPrecio();
-        
+public  interface EnVenta {
+    
+        public float getPrecio();
         
 }

@@ -9,6 +9,6 @@ package AEC1;
  *
  * @author jfhs1
  */
-public class NewClass {
+public class LANZADOR {
     
 }
