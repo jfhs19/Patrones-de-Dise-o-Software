@@ -5,45 +5,79 @@
  */
 package AEC1.ventas;
 
+import java.util.List;
+
 /**
  *
  * @author jfhs1
  */
-public class VentaWeb extends Venta  {
-   
-    //En VentaWeb se almacena la agencia encargada del envio.
+public final class VentaWeb extends VentaExtras{
+
+    private float coste;
     private String web;
-    private String agencia;
-
-    public String getAgencia() {
-        return agencia;
-    }
-
-    @Override
-    public String getFecha() {
-        return super.getFecha(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getIdUser() {
-        return super.getIdUser(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public float getPrecio() {
-        return super.getPrecio(); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public String getWeb() {
         return web;
     }
-
-    public void setAgencia(String agencia) {
-        this.agencia = agencia;
+    
+    
+    public VentaWeb(EnVenta EnVenta) {
+        super(EnVenta);
     }
 
-    public void setWeb(String web) {
-        this.web = web;
+
+    public float getCoste() {
+        return coste;
     }
+
+    public void setCoste(float coste) {
+        this.coste = coste;
+    }
+
+
+    public VentaWeb(String descripcion,EnVenta EnVenta) {
+        super(EnVenta);
+
+    }
+
+    @Override
+    public float getPrecio() {
+        return getEnVenta().getPrecio() + coste; 
+    }
+
+    public VentaWeb() {
+        super(null);
+    }
+
+    @Override
+    protected String getBodyHTML() {
+        //Clase que genera el body del html
+        String body = null;
+        String articuloTemp;
+        //Se muestra en lista separados por saltos de linea
+        body = "Id Venta "+getidVenta()+"\n";
+        //Recorremos la lista de los articulos
+        List<String> articulos = getArticulo();
+        body = body+"ARTICULOS\n";
+        for(String articulo : articulos){
+            articuloTemp = "\t"+articulo+"\n";
+            body = body+articuloTemp;
+        }
+        //Añadimos el precio final
+        body = body+"PRECIO FINAL: "+getPrecio()+"\n";
+        return body;
+    }
+
+    @Override
+    public String getidVenta() {
+       return this.getWeb()+"-"+getEnVenta().getidVenta();
+    }
+
+    @Override
+    public List getArticulo() {
+       List articulos = getEnVenta().getArticulo();
+       return articulos;
+    }
+
 
 }

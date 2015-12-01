@@ -5,12 +5,15 @@
  */
 package AEC1.ventas;
 
+import java.util.List;
+
 /**
  *
  * @author jfhs1
  */
 public  interface EnVenta {
     
-        public float getPrecio();
-        
+    public float getPrecio();
+    public String getidVenta();
+    public List getArticulo();
 }

@@ -8,7 +8,10 @@ package AEC1;
 import java.util.List;
 import AEC1.*;
 import AEC1.ventas.EnVenta;
+import AEC1.ventas.Venta;
 import AEC1.ventas.VentaMKP;
+import AEC1.ventas.VentaWeb;
+import java.util.ArrayList;
 
 /**
  *
@@ -42,18 +45,29 @@ public class Facade {
         return operario;
     }
     
-    public String getHTML(List<String> parametros){
+    public String getHTML(){
        
-        return "html";
+        String retornar = "<!DOCTYPE html><html><head><title>" + "</title></head><body>";
+        return retornar;
     }
     
     public static void main(String[] args) {
       
-        EnVenta ventaMKP = new VentaMKP();
-        System.out.println(ventaMKP.html());
+        Facade facade = Facade.getIntancia();
+        facade.setOperario("JF");
+        Venta vendido = new Venta();
+        vendido.setPrecio(1);
+        vendido.setIdVenta("123");
+        List<String> articulos = new ArrayList();
+        articulos.add("Articulo 1");
+        articulos.add("Articulo 2");
+        vendido.setArticulo(articulos);
         
-        
-        
+       VentaWeb ventaweb = new VentaWeb(vendido);
+       ventaweb.setCoste(2);
+       ventaweb.setVendedor(facade.operario);
+
+       System.out.println(ventaweb.getHTML());
     }
    
 }

@@ -5,48 +5,62 @@
  */
 package AEC1.ventas;
 
+import java.util.List;
+
 /**
  *
  * @author jfhs1
  */
-public class VentaMKP extends Venta {
+public class VentaMKP extends VentaExtras{
 
-    private String MKP;
-    private String pais;
-    //En VentaMKP se encarga el MKP de la gestión del envio.
+    float porcentaje;
+    String MKP;
+
+    public float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+
+    public VentaMKP(float porcentaje, AEC1.ventas.EnVenta EnVenta) {
+        super(EnVenta);
+        this.porcentaje = porcentaje;
+    }
     
-    @Override
-    public String getFecha() {
-        return super.getFecha(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getIdUser() {
-        return super.getIdUser(); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    public VentaMKP(EnVenta EnVenta) {
+      super(EnVenta);
+    }   
 
     @Override
     public float getPrecio() {
-        return super.getPrecio(); //To change body of generated methods, choose Tools | Templates.
+        float total = getEnVenta().getPrecio();
+        float descontado = (total * porcentaje) /100;
+       return total - descontado;
     }
 
-    public String getPais() {
-        return pais;
+    @Override
+    protected String getBodyHTML() {
+     return "Soy MKP" + getPrecio();
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+
+
+    private String getMKP() {
+      return this.MKP;
     }
 
-    public void setMKP(String MKP) {
-        this.MKP = MKP;
+    @Override
+    public String getidVenta() {
+       return this.getMKP()+"-"+getEnVenta().getidVenta();
     }
 
-    public String getMKP() {
-        return MKP;
+    @Override
+    public List getArticulo() {
+       List articulos = getEnVenta().getArticulo();
+       return articulos;
     }
-    
-
-
 
 }

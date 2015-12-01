@@ -5,33 +5,42 @@
  */
 package AEC1.ventas;
 
+import java.util.List;
+
 /**
  *
  * @author jfhs1
  */
-public abstract class Venta implements EnVenta {
+public class Venta implements EnVenta {
 
     private float precio;
-    private int idUser;
-    private String fecha;
+    private String idVenta;
+    private List<String> articulo;
 
-    public String getFecha() {
-        return this.fecha;
+    public void setPrecio(float precio) {
+        this.precio = precio;
     }
 
-    public int getIdUser() {
-        return this.idUser;
+    public float getPrecio() {
+        return this.precio;
+    }
+
+    public void setArticulo(List<String> articulo) {
+        this.articulo = articulo;
     }
 
     @Override
-    public  float getPrecio() {
-        return this.precio;
+    public String getidVenta() {
+        return this.idVenta;
     }
-    
+
+    public void setIdVenta(String idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    @Override
+    public List<String> getArticulo() {
+        return articulo;
+    }
 
 }
-    
-    
-
-    
-           
