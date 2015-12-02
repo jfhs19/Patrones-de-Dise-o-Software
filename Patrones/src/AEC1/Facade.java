@@ -53,6 +53,8 @@ public class Facade {
     
     public static void main(String[] args) {
       
+        String tienda = "Amazon";
+        
         Facade facade = Facade.getIntancia();
         facade.setOperario("JF");
         Venta vendido = new Venta();
@@ -63,11 +65,14 @@ public class Facade {
         articulos.add("Articulo 2");
         vendido.setArticulo(articulos);
         
-       VentaWeb ventaweb = new VentaWeb(vendido);
-       ventaweb.setCoste(2);
-       ventaweb.setVendedor(facade.operario);
+        System.out.println(vendido);
+        
+       VentaMKP ventaMK = new VentaMKP(vendido);
+        ventaMK.setPorcentaje(20);
+        ventaMK.setMKP(tienda);
+       ventaMK.setVendedor(facade.operario);
 
-       System.out.println(ventaweb.getHTML());
+       System.out.println(ventaMK.getHTML());
     }
    
 }
